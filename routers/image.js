@@ -14,4 +14,13 @@ images.get("/", async (req, res, next) => {
   }
 });
 
+images.post("/", async (req, res, next) => {
+  try {
+    const newImage = await Image.create(({ title, url } = req.body));
+    res.json(newImage);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = images;
