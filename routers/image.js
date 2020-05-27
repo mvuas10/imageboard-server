@@ -23,4 +23,13 @@ images.post("/", async (req, res, next) => {
   }
 });
 
+images.get("/", (req, res, next) => {
+  const limit = Math.min(req.query.limit || 25, 500);
+  const offset = req.query.offset || 0;
+
+  Image.findAndCountAll({ limit, offset })
+    .then((result) => res.send({ images: result.rows, total: result.count }))
+    .catch((error) => next(error));
+});
+
 module.exports = images;
