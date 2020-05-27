@@ -5,7 +5,7 @@ const Image = require("../models").image;
 
 const images = new Router();
 
-// images.get("/user1", async (req, res, next) => {
+// images.get("/", async (req, res, next) => {
 //   try {
 //     const allImages = await Image.findAll();
 //     res.json(allImages);
