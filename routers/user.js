@@ -1,12 +1,13 @@
 const express = require("express");
 const { Router } = express;
 const bcrypt = require("bcrypt");
+const authMiddleware = require("../auth/middleware");
 
 const User = require("../models").user;
 
 const users = new Router();
 
-users.get("/", async (req, res, next) => {
+users.get("/", authMiddleware, async (req, res, next) => {
   try {
     const allUsers = await User.findAll();
     res.json(allUsers);
